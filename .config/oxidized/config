@@ -1,0 +1,57 @@
+---
+
+interval: 3600 #interval in seconds
+log: ~/.config/oxidized/log
+debug: false
+threads: 30 # maximum number of threads
+# use_max_threads:
+# false - the number of threads is selected automatically based on the interval option, but not more than the maximum
+# true - always use the maximum number of threads
+use_max_threads: false
+timeout: 20
+retries: 3
+prompt: !ruby/regexp /^([\w.@-]+[#>]\s?)$/
+crash:
+  directory: ~/.config/oxidized/crashes
+  hostnames: false
+vars:
+  remove_secret: true
+groups: {}
+models: {}
+extensions:
+  oxidized-web:
+    load: true
+    # Bind to any IPv4 interface
+    listen: 0.0.0.0
+    # Bind to port 8888 (default)
+    port: 8888
+    # Prefix prod to the URL, so http://oxidized.full.domain/prod/
+    # url_prefix: oxidized
+    # virtual hosts to listen to (others will be denied)
+    vhosts:
+      - localhost
+      - oxidized
+      - oxidized.local
+pid: ~/.config/oxidized/oxidized.pid
+input:
+  default: ssh
+  debug: false
+  ssh:
+    secure: false
+output:
+  default: git
+  git:
+      user: Oxidized
+      email: oxidized@example.com
+      repo: "~/.config/oxidized/oxidized.git"
+source:
+  default: csv
+  csv:
+    file: ~/.config/oxidized/router.db
+    delimiter: !ruby/regexp /:/
+    map:
+      name: 0
+      ip: 1
+      model: 2
+      username: 3
+      password: 4
