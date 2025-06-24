@@ -1,5 +1,4 @@
 ---
-
 interval: 3600 #interval in seconds
 log: ~/.config/oxidized/log
 debug: false
