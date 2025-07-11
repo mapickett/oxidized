@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 ARG OXIDIZED_VERSION="0.33.0"
 
 FROM docker.io/oxidized/oxidized:${OXIDIZED_VERSION}

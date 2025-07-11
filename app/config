@@ -1,11 +1,10 @@
 ---
-interval: 3600 #interval in seconds
+username: admin  
+password: admin
+interval: 3600
 log: ~/.config/oxidized/log
 debug: false
-threads: 30 # maximum number of threads
-# use_max_threads:
-# false - the number of threads is selected automatically based on the interval option, but not more than the maximum
-# true - always use the maximum number of threads
+threads: 30 
 use_max_threads: false
 timeout: 20
 retries: 3
@@ -14,23 +13,15 @@ crash:
   directory: ~/.config/oxidized/crashes
   hostnames: false
 vars:
-  remove_secret: true
+  remove_secret: false
+resolve_dns: false
 groups: {}
 models: {}
 extensions:
   oxidized-web:
     load: true
-    # Bind to any IPv4 interface
     listen: 0.0.0.0
-    # Bind to port 8888 (default)
     port: 8888
-    # Prefix prod to the URL, so http://oxidized.full.domain/prod/
-    # url_prefix: oxidized
-    # virtual hosts to listen to (others will be denied)
-    vhosts:
-      - localhost
-      - oxidized
-      - oxidized.local
 pid: ~/.config/oxidized/oxidized.pid
 input:
   default: ssh
@@ -52,5 +43,6 @@ source:
       name: 0
       ip: 1
       model: 2
+    vars_map:
       username: 3
       password: 4
